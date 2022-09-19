@@ -10,6 +10,8 @@ import Footer from './Pages/Shared/Footer/Footer';
 import Header from './Pages/Shared/Header/Header';
 import InventoryItem from './Pages/Home/InventoryItem/InventoryItem';
 import Blog from './Pages/Blog/Blog';
+import RequireAuth from './Pages/Login/RequireAuth';
+import InventoryDetails from './Pages/InventoryDetails/InventoryDetails';
 
 function App() {
   return (
@@ -17,10 +19,16 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
+        <Route path='/home' element={<Home></Home>}></Route>
         <Route path="/about" element={<About></About>}></Route>
         <Route path='/blog' element={<Blog></Blog>}></Route>
         <Route path="/contact" element={<ContactUs></ContactUs>}></Route>
         <Route path='/items' element={<InventoryItem></InventoryItem>}></Route>
+        <Route path='/inventory/:id' element={
+          <RequireAuth>
+            <InventoryDetails></InventoryDetails>
+          </RequireAuth>
+        }></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
