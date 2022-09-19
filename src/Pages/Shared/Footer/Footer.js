@@ -1,14 +1,14 @@
 import React from 'react';
 import { Col, Container, Nav, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
+import './Footer.css'
 const Footer = () => {
     const today = new Date();
     const year = today.getFullYear();
     return (
-        <footer className='text-center mt-5 bg-dark text-light'>
+        <footer className='footerBg'>
             <hr></hr>
-            <div className="p-5">
+            <div className="p-2">
                 <Container>
                     <Row>
                         <Col xs={12} md={12}>

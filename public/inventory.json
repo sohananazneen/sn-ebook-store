@@ -1,0 +1,56 @@
+[
+    {
+        "_id": 1,
+        "img": "https://cob.azureedge.net/cache/c/f/9/2/9/d/cf929df3b4640fa9e3893c370d8448cf0ffe7fbf.jpg",
+        "price": 220,
+        "name": "ebooks",
+        "supplier": "ebooks Trade",
+        "short_description": "An ebook (short for electronic book)",
+        "description": "An ebook (short for electronic book), also known as an e-book or eBook, is a book publication made available in digital form, consisting of text, images"
+    },
+    {
+        "_id": 2,
+        "img": "https://cob.azureedge.net/cache/c/f/9/2/9/d/cf929df3b4640fa9e3893c370d8448cf0ffe7fbf.jpg",
+        "price": 6000,
+        "name": "ebooks",
+        "supplier": "ebooks Trade",
+        "short_description": "An ebook (short for electronic book)",
+        "description": "An ebook (short for electronic book), also known as an e-book or eBook, is a book publication made available in digital form, consisting of text, images"
+    },
+    {
+        "_id": 3,
+        "img": "https://cob.azureedge.net/cache/c/f/9/2/9/d/cf929df3b4640fa9e3893c370d8448cf0ffe7fbf.jpg",
+        "price": 3000,
+        "name": "ebooks",
+        "supplier": "ebooks Trade",
+        "short_description": "An ebook (short for electronic book)",
+        "description": "An ebook (short for electronic book), also known as an e-book or eBook, is a book publication made available in digital form, consisting of text, images"
+    },
+    {
+        "_id": 4,
+        "img": "https://cob.azureedge.net/cache/c/f/9/2/9/d/cf929df3b4640fa9e3893c370d8448cf0ffe7fbf.jpg",
+        "price": 4000,
+        "name": "ebooks",
+        "supplier": "ebooks Trade",
+        "short_description": "An ebook (short for electronic book)",
+        "description": "An ebook (short for electronic book), also known as an e-book or eBook, is a book publication made available in digital form, consisting of text, images"
+    },
+    {
+        "_id": 5,
+        "img": "https://cob.azureedge.net/cache/c/f/9/2/9/d/cf929df3b4640fa9e3893c370d8448cf0ffe7fbf.jpg",
+        "price": 4550,
+        "name": "ebooks",
+        "supplier": "ebooks Trade",
+        "short_description": "An ebook (short for electronic book)",
+        "description": "An ebook (short for electronic book), also known as an e-book or eBook, is a book publication made available in digital form, consisting of text, images"
+    },
+    {
+        "_id": 6,
+        "img": "https://cob.azureedge.net/cache/c/f/9/2/9/d/cf929df3b4640fa9e3893c370d8448cf0ffe7fbf.jpg",
+        "price": 500,
+        "name": "ebooks",
+        "supplier": "ebooks Trade",
+        "short_description": "An ebook (short for electronic book)",
+        "description": "An ebook (short for electronic book), also known as an e-book or eBook, is a book publication made available in digital form, consisting of text, images"
+    }
+]
