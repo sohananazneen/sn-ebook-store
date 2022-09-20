@@ -25,6 +25,19 @@ const Header = () => {
                             <Nav.Link as={Link} to="/contact" className='text-white'>Contact Us</Nav.Link>
 
                             {
+                                user && <>
+                                    <Nav.Link as={Link} to="manageInventories" className='text-white'>
+                                        Manage Item
+                                    </Nav.Link>
+                                    <Nav.Link as={Link} to="addItem" className='text-white'>
+                                        Add Item
+                                    </Nav.Link>
+                                    <Nav.Link as={Link} to="myItems" className='text-white'>
+                                        My items
+                                    </Nav.Link>
+                                </>
+                            }
+                            {
                                 user ?
                                     <>
                                         <Nav.Link onClick={handleSignOut} className='text-white'>Sign out</Nav.Link>
@@ -37,6 +50,7 @@ const Header = () => {
                                         <Nav.Link as={Link} to="/login" className='text-white'>Login</Nav.Link>
                                     </>
                             }
+
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

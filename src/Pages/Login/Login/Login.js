@@ -6,6 +6,7 @@ import { useRef } from 'react';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Login = () => {
     const emailRef = useRef('');
@@ -64,6 +65,7 @@ const Login = () => {
                 <p>Don't have Account? <Link to="/register" className=' pe-auto text-decoration-none' onClick={navigateRegister} > Please Register</Link> </p>
 
                 <p>Forget Password? <button className='btn btn-link  pe-auto text-decoration-none' >Reset Password</button> </p>
+                <SocialLogin></SocialLogin>
             </div>
         </Container>
     );

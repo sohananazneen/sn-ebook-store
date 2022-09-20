@@ -1,12 +1,15 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import about from '../../Images/book.jpg';
+import "./About.css";
 
 const About = () => {
     return (
         <Container>
             <Row>
-                <h1 className="text-center my-4">About us</h1>
+                <div className='get-in-touch'>
+                    <h2 className='title'>About us</h2>
+                </div>
                 <Col md={6}>
                     <img src={about} className="w-100" alt="" />
                 </Col>

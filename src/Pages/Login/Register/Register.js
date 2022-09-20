@@ -4,6 +4,7 @@ import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-fireb
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading';
+import SocialLogin from '../SocialLogin/SocialLogin';
 import './Register.css';
 
 const Register = () => {
@@ -58,7 +59,7 @@ const Register = () => {
                     </button>
                 </Form>
                 <p>Already have an account? <Link to="/login" className='text-primary pe-auto text-decoration-none' onClick={navigateLogin}>Please Login</Link> </p>
-
+                <SocialLogin></SocialLogin>
             </div>
         </Container>
     );

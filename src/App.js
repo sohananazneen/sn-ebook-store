@@ -1,6 +1,5 @@
 
 import { Route, Routes } from 'react-router-dom';
-import Home from './Pages/Home/Home';
 import About from './Pages/About/About';
 import ContactUs from './Pages/ContactUs/ContactUs';
 import NotFound from './Pages/Shared/NotFound';
@@ -12,6 +11,10 @@ import InventoryItem from './Pages/Home/InventoryItem/InventoryItem';
 import Blog from './Pages/Blog/Blog';
 import RequireAuth from './Pages/Login/RequireAuth';
 import InventoryDetails from './Pages/InventoryDetails/InventoryDetails';
+import Home from './Pages/Home/Home/Home';
+import ManageInventories from './Pages/ManageInventories/ManageInventories';
+import AddItem from './Pages/AddItem/AddItem';
+import MyItems from './Pages/MyItems/MyItems';
 
 function App() {
   return (
@@ -24,9 +27,22 @@ function App() {
         <Route path='/blog' element={<Blog></Blog>}></Route>
         <Route path="/contact" element={<ContactUs></ContactUs>}></Route>
         <Route path='/items' element={<InventoryItem></InventoryItem>}></Route>
+        <Route path='/manageInventories' element={
+          <ManageInventories></ManageInventories>
+        }></Route>
         <Route path='/inventory/:id' element={
           <RequireAuth>
             <InventoryDetails></InventoryDetails>
+          </RequireAuth>
+        }></Route>
+        <Route path='/addItem' element={
+          <RequireAuth>
+            <AddItem></AddItem>
+          </RequireAuth>
+        }></Route>
+        <Route path="/myItems" element={
+          <RequireAuth>
+            <MyItems></MyItems>
           </RequireAuth>
         }></Route>
         <Route path="/login" element={<Login></Login>}></Route>
