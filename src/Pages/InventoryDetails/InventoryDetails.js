@@ -7,6 +7,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 const InventoryDetails = () => {
     const { id } = useParams();
@@ -18,6 +19,26 @@ const InventoryDetails = () => {
         navigate(`/manageInventories`);
     }
 
+    useEffect(() => {
+        const url = `https://mysterious-reef-45154.herokuapp.com/inventory/${id}`;
+        axios.get(url).then((res) => setInventory(res.data));
+    }, [id]);
+
+    let { quantity } = inventory;
+
+    const handleDeliverd = () => {
+        const newQuantity = quantity - 1;
+        const updateQuantity = { ...inventory, quantity: newQuantity };
+        setInventory(updateQuantity);
+        const url = `https://mysterious-reef-45154.herokuapp.com/inventory/${id}`;
+        fetch(url, {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(updateQuantity),
+        });
+    };
     const handleOrder = event => {
         event.preventDefault();
         const order = {
@@ -59,7 +80,8 @@ const InventoryDetails = () => {
                                     <Card.Text>Sold:</Card.Text>
                                 </Card.Body>
                                 <div className='text-center my-2'>
-                                    <button className="submit-btn my-2" type="submit" >
+                                    <button className="submit-btn my-2" type="submit" disabled={inventory.quantity === 0}
+                                        onClick={handleDeliverd} >
                                         Deliver
                                     </button>
                                 </div>
@@ -76,7 +98,7 @@ const InventoryDetails = () => {
                     </Col>
                 </Row>
             </Container>
-        </div>
+        </div >
     );
 };
 
