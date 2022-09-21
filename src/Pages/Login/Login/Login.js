@@ -28,7 +28,6 @@ const Login = () => {
 
     const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
-    // jwt
     const [token] = useToken(user);
 
     if (token) {
