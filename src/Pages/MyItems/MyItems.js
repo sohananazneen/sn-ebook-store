@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { useNavigate } from 'react-router-dom';
@@ -49,18 +49,20 @@ const MyItems = () => {
         <Container>
             <h2 className='text-center mt-4'>All Orders</h2>
             <h2>Your Stoked Items: {orders.length}</h2>
-            <Row className="d-flex justify-content-center mt-4 border">
-                {
-                    orders.map(orders => <div key={orders._id}>
-                        <p><img src={orders.img} alt="" className="img-fluid w-25" /></p>
-                        <h5>Name: {orders.name}</h5>
-                        <p>Price: {orders.price}</p>
-                        <p>Quantity: {orders.quantity}</p>
-                        <p>Description: {orders.description}</p>
-                        <p>Supplier Name: {orders.supplier}</p>
-                        <Button className='btn btn-danger mx-2' onClick={() => handleDelete(orders._id)}>Delete</Button>
-                    </div>)
-                }
+            <Row className="d-flex justify-content-center mt-4">
+                <Col className='border'>
+                    {
+                        orders.map(orders => <div key={orders._id}>
+                            <p><img src={orders.img} alt="" className="img-fluid w-25" /></p>
+                            <h5>Name: {orders.name}</h5>
+                            <p>Price: {orders.price}</p>
+                            <p>Quantity: {orders.quantity}</p>
+                            <p>Description: {orders.description}</p>
+                            <p>Supplier Name: {orders.supplier}</p>
+                            <Button className='btn btn-danger mx-2' onClick={() => handleDelete(orders._id)}>Delete</Button>
+                        </div>)
+                    }
+                </Col>
             </Row>
         </Container>
     );
