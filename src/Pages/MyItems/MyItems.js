@@ -14,7 +14,7 @@ const MyItems = () => {
 
     useEffect(() => {
         const getOrders = async () => {
-            const email = user.email;
+            const email = user?.email;
             const url = `https://mysterious-reef-45154.herokuapp.com/order?email=${email}`;
             try {
                 const { data } = await axiosPrivate.get(url);
