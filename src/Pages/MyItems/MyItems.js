@@ -49,17 +49,19 @@ const MyItems = () => {
         <Container>
             <h2 className='text-center mt-4'>All Orders</h2>
             <h2>Your Stoked Items: {orders.length}</h2>
-            <Row className="d-flex justify-content-center mt-4">
-                <Col className='border'>
+            <Row className="d-flex justify-content-center">
+                <Col>
                     {
                         orders.map(orders => <div key={orders._id}>
-                            <p><img src={orders.img} alt="" className="img-fluid w-25" /></p>
-                            <h5>Name: {orders.name}</h5>
-                            <p>Price: {orders.price}</p>
-                            <p>Quantity: {orders.quantity}</p>
-                            <p>Description: {orders.description}</p>
-                            <p>Supplier Name: {orders.supplier}</p>
-                            <Button className='btn btn-danger mx-2' onClick={() => handleDelete(orders._id)}>Delete</Button>
+                            <div className='border my-4 p-4'>
+                                <p><img src={orders.img} alt="" className="img-fluid w-25" /></p>
+                                <h5>Name: {orders.name}</h5>
+                                <p>Price: {orders.price}</p>
+                                <p>Quantity: {orders.quantity}</p>
+                                <p>Description: {orders.description}</p>
+                                <p>Supplier Name: {orders.supplier}</p>
+                                <Button className='btn btn-danger mx-2' onClick={() => handleDelete(orders._id)}>Delete</Button>
+                            </div>
                         </div>)
                     }
                 </Col>
