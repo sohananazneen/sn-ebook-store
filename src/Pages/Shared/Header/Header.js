@@ -42,7 +42,7 @@ const Header = () => {
                                     <>
                                         <Nav.Link onClick={handleSignOut} className='text-white'>Sign out</Nav.Link>
                                         <Nav.Link as={Link} to="myItems" className='text-white'>
-                                            <h6>Signed in as: ||{user.displayName}||</h6>
+                                            <h6>Signed in as:{user.displayName}</h6>
                                         </Nav.Link>
                                     </>
                                     :

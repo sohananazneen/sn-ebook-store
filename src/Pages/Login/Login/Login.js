@@ -3,10 +3,12 @@ import './Login.css';
 import { Container, Form } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const Login = () => {
     const emailRef = useRef('');
@@ -23,10 +25,13 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+
+    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+
     if (user) {
         navigate(from, { replace: true });
     }
-    if (loading) {
+    if (loading || sending) {
         return <Loading></Loading>
     }
 
@@ -37,12 +42,26 @@ const Login = () => {
         event.preventDefault();
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
+
         await signInWithEmailAndPassword(email, password);
+        const { data } = await axios.post('https://mysterious-reef-45154.herokuapp.com/login', { email });
+        // console.log(data);
+        localStorage.setItem('accessToken', data.accessToken);
         navigate(from, { replace: true });
     }
 
     const navigateRegister = event => {
         navigate('/register');
+    }
+    const resetPassword = async () => {
+        const email = emailRef.current.value;
+        if (email) {
+            await sendPasswordResetEmail(email);
+            toast('Sent email');
+        }
+        else {
+            toast('please enter your email address');
+        }
     }
 
     return (
@@ -64,7 +83,7 @@ const Login = () => {
                 {errorElement}
                 <p>Don't have Account? <Link to="/register" className=' pe-auto text-decoration-none' onClick={navigateRegister} > Please Register</Link> </p>
 
-                <p>Forget Password? <button className='btn btn-link  pe-auto text-decoration-none' >Reset Password</button> </p>
+                <p>Forget Password? <button className='btn btn-link  pe-auto text-decoration-none' onClick={resetPassword}>Reset Password</button> </p>
                 <SocialLogin></SocialLogin>
             </div>
         </Container>

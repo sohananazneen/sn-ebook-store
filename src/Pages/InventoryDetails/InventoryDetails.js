@@ -6,6 +6,7 @@ import "./InventoryDetails.css";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { AiOutlineArrowRight } from 'react-icons/ai';
+import axios from 'axios';
 
 const InventoryDetails = () => {
     const { id } = useParams();
@@ -17,6 +18,27 @@ const InventoryDetails = () => {
         navigate(`/manageInventories`);
     }
 
+    const handleOrder = event => {
+        event.preventDefault();
+        const order = {
+            inventoryId: inventory._id,
+            email: user.email,
+            quantity: inventory.quantity,
+            name: inventory.name,
+            price: inventory.price,
+            description: inventory.description,
+            img: inventory.img
+        }
+        axios.post('https://mysterious-reef-45154.herokuapp.com/order', order)
+            .then(response => {
+                const { data } = response;
+                if (data.insertedId) {
+                    toast('Delivered');
+                    event.target.reset();
+                }
+            })
+    }
+
     return (
         <div>
             <Container>
@@ -25,33 +47,31 @@ const InventoryDetails = () => {
                 </div>
                 <Row>
                     <Col>
-                        <Card className='my-4'>
-                            <Card.Img variant="top" src={inventory.img} className="img-fluids w-50" />
-                            <Card.Body>
-                                <Card.Text><strong> {inventory.name}</strong></Card.Text>
-                                <Card.Text><strong> Price: $ </strong>{inventory.price}</Card.Text>
-                                <Card.Text><strong>Quantity:</strong> {inventory.quantity}</Card.Text>
-                                <Card.Text><strong>Supplier Name:</strong> {inventory.supplier}</Card.Text>
-                                <Card.Text>{inventory.description}</Card.Text>
-                                <Card.Text>Sold:</Card.Text>
-                                <div className='text-center mx-2'>
-                                    <button className="submit-btn mx-2" type="submit">
-                                        Delivered
+                        <Form onSubmit={handleOrder}>
+                            <Card className='my-4'>
+                                <Card.Img variant="top" src={inventory.img} className="img-fluids w-25" />
+                                <Card.Body>
+                                    <Card.Text><strong> {inventory.name}</strong></Card.Text>
+                                    <Card.Text><strong> Price: $ </strong>{inventory.price}</Card.Text>
+                                    <Card.Text><strong>Quantity:</strong> {inventory.quantity}</Card.Text>
+                                    <Card.Text><strong>Supplier Name:</strong> {inventory.supplier}</Card.Text>
+                                    <Card.Text>{inventory.description}</Card.Text>
+                                    <Card.Text>Sold:</Card.Text>
+                                </Card.Body>
+                                <div className='text-center my-2'>
+                                    <button className="submit-btn my-2" type="submit" >
+                                        Deliver
                                     </button>
                                 </div>
-                            </Card.Body>
-                        </Card>
+                            </Card>
+                        </Form>
                     </Col>
-                </Row>
-                <Row>
                     <Col>
-                        <Form className='border p-5'>
-                            <div className='text-center get-in-touch'>
-                                <h2 className='title'>Restock the items</h2>
-                            </div>
+                        <h2>Restock the items</h2>
+                        <Form className='border p-5 my-4'>
                             <input className='w-100 mb-2' type="number" name="quantity" placeholder='Enter Quantity' required />
                             <br />
-                            <input className='btn-light fw-bold text-primary' type="submit" value="Restock" />
+                            <input className='btn btn-primary' type="submit" value="Restock" />
                         </Form>
                     </Col>
                 </Row>

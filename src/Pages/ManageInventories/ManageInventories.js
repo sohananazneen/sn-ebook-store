@@ -2,10 +2,9 @@ import React from 'react';
 import { Button, Container, Row } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import useInventory from '../../hooks/useInventory';
-import Inventory from '../Home/Inventory/Inventory';
 import "./ManageInventories.css";
 
 const ManageInventories = () => {
@@ -15,12 +14,15 @@ const ManageInventories = () => {
     const navigateToAdd = () => {
         navigate(`/addItem`);
     }
+    const navigateToUpdate = id => {
+        navigate(`/inventory/${id}`);
+    }
     const [user] = useAuthState(auth);
 
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure?');
         if (proceed) {
-            const url = `http://localhost:5000/inventory/${id}`;
+            const url = `https://mysterious-reef-45154.herokuapp.com/inventory/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
@@ -55,6 +57,7 @@ const ManageInventories = () => {
                                     <th scope="col">Image</th>
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Price</th>
+                                    <th scope="col">Update</th>
                                     {
                                         user && <>
                                             <th scope="col">Delete</th>
@@ -68,6 +71,7 @@ const ManageInventories = () => {
                                     <td><img src={inventory.img} alt="" className="img-fluid img-size2" /></td>
                                     <td>{inventory.quantity}</td>
                                     <td>{inventory.price}</td>
+                                    <td><Button onClick={() => navigateToUpdate(inventory._id)} className='btn-light fw-bold text-primary'>Manage</Button></td>
                                     {
                                         user && <>
                                             <td><Button className='btn-danger' onClick={() => handleDelete(inventory._id)}>X</Button></td>
@@ -80,7 +84,6 @@ const ManageInventories = () => {
                     </div>)
                 }
             </Row>
-            <ToastContainer />
         </Container>
     );
 };
